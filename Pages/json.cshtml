@@ -1,0 +1,23 @@
+﻿@page
+@model JsonModel
+
+@{
+    ViewData["Title"] = "List of Courses";
+}
+
+<h1>List of Courses</h1>
+
+<ul class="list-group">
+    @if (Model.Courses is not null)
+    {
+        @foreach (var course in Model.Courses)
+        {
+            if(course.course != null){
+            <li class="list-group-item">
+     <a href="/courses/details/courses.cshtml?courseName=@System.Web.HttpUtility.UrlEncode(course.course)">
+    @course.course</a>
+            </li>
+            }
+        }
+    }
+</ul>

@@ -1,0 +1,34 @@
+﻿@page "/courses/details/{courseName}"
+@model JsonModel
+
+@{
+    ViewData["Title"] = "Course Details";
+    string? courseName = Request.Query["courseName"];
+}
+<h1>Course Details</h1>
+<p>@courseName</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>University Name</th>
+            <th>Country</th>
+        </tr>
+    </thead>
+    @if (Model.Courses != null)
+    {
+    @foreach (var course in Model.Courses)
+    {
+        Console.WriteLine($"The course is{course.course}");
+        if (course.course == courseName && course.universities != null)
+        {
+            foreach(var university in course.universities){
+            <tr>
+                <td>@university.name</td>
+                <td>@university.country</td>
+            </tr>
+            }
+        }
+    }
+}
+
+</table>
